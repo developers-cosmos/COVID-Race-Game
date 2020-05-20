@@ -1,4 +1,4 @@
-# <img src="images/intro.jpeg" height = "200px" width ="600px"/>
+# <img src="images/intro.JPG" height = "200px" width ="600px"/>
 
 A 2d <b>Covid Race Game</b> is created using python and pygame library. Also user can control the PLAYER with gestures which is achieved through AI.
 
@@ -30,7 +30,7 @@ Left arrow  :arrow_left: | Move Left
 Right arrow :arrow_right: | Move Right
 Space ⏸️ | Pause & Resume
 
-# <img src="images/dead.jpg" height = "300px" width ="600px"/>
+# <img src="images/dead.JPG" height = "300px" width ="600px"/>
 
 
 ### Powerups :tropical_drink:
@@ -54,7 +54,7 @@ Police 👮 | (Powerdown). Causes the player to drop down the strength if PLAYER
 
 * First of all to download Gesture Conrol Application [click here.](https://bit.ly/COVID-Race-Game-GestureControlAIapplication)
 * To start the application click on main.exe after downloading Gesture Conrol Application , two windows will be opened for you Deepgaze screen and Mask screen.
-    # <img src="images/gesture.jpg" height = "600px" width ="600px"/>
+    # <img src="images/gesture.JPG" height = "600px" width ="600px"/>
 * In order to run the service click anywhere on Mask window and press 'a' to start.
 * Now you can use the application with gestures you can see a green dot on the Deepgaze screen.
 * To stop the service click anywhere on the Deepgaze screen and press 'q' to stop.
