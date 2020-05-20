@@ -1,4 +1,4 @@
-# <img src="images/intro.jpg" height = "200px" width ="600px"/>
+# <img src="images/intro.jpeg" height = "200px" width ="600px"/>
 
 A 2d <b>Covid Race Game</b> is created using python and pygame library. Also user can control the PLAYER with gestures which is achieved through AI.
 
