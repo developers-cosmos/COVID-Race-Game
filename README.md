@@ -17,7 +17,7 @@ python "COVID Race Game.py"
 ## Downloads
 
 * To download Gesture Conrol Application [click here.](https://bit.ly/COVID-Race-Game-GestureControlAIapplication)
-* To download sample videos of COVID RACE GAME [click here.](https://bit.ly/COVID-Race-Game-GestureControlAIapplication)
+* To download sample videos of COVID RACE GAME [click here.](https://bit.ly/COVID-Race-Game-VideoDownload)
 
 
 ## Game Instructions
