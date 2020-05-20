@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-#from evdev import UInput, ecodes as e
 from deepgaze.color_detection import MultiBackProjectionColorDetector
 from deepgaze.mask_analysis import BinaryMaskAnalyser
 from pynput.keyboard import Key, Controller
