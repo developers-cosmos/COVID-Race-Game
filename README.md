@@ -1,6 +1,6 @@
 # <img src="images/intro.JPG" height = "200px" width ="600px"/>
 
-A 2d <b>Covid Race Game</b> is created using python and pygame library. Also user can control the PLAYER with gestures which is achieved through AI without any sensors.
+A 2d <b>Covid Race Game</b> is created using python and pygame library. Also user can control the PLAYER with gestures which is achieved through AI without any sensors. Click [COVID RACE GAME](https://bit.ly/COVID-RACE-GAME-download-version1) to download the Game and Open script.exe in the folder
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/developers-cosmos/COVID-Race-Game/graphs/commit-activity) ![GitHub language count](http://img.shields.io/github/languages/count/developers-cosmos/COVID-Race-Game) ![GitHub repo size](https://img.shields.io/github/repo-size/developers-cosmos/COVID-Race-Game)
 
@@ -16,6 +16,7 @@ python "COVID Race Game.py"
 ```
 ## Downloads
 
+* To download the game without any setup [click here.](https://bit.ly/COVID-RACE-GAME-download-version1)
 * To download Gesture Conrol Application [click here.](https://bit.ly/COVID-Race-Game-GestureControlAIapplication)
 * To download sample videos of COVID RACE GAME [click here.](https://bit.ly/COVID-Race-Game-VideoDownload)
 
