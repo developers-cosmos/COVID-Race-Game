@@ -12,7 +12,7 @@ Requires python-3 and pip installed.
 
 ```python
 pip install -r requirements.txt
-python "COVID Race Game.py"
+python "Race Game.py"
 ```
 ## Downloads
 
