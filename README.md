@@ -4,6 +4,8 @@ A 2d <b>Covid Race Game</b> is created using python and pygame library. Also use
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/developers-cosmos/COVID-Race-Game/graphs/commit-activity) ![GitHub language count](http://img.shields.io/github/languages/count/developers-cosmos/COVID-Race-Game) ![GitHub repo size](https://img.shields.io/github/repo-size/developers-cosmos/COVID-Race-Game)
 
+<img src="6gif.gif"/>
+
 
 ## Run :runner:
 
