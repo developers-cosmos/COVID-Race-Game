@@ -6,6 +6,7 @@ A 2d <b>Covid Race Game</b> is created using python and pygame library. Also use
 
 <img src="6gif.gif"/>
 
+For implementation visit my article on [medium](https://medium.com/towards-artificial-intelligence/how-i-developed-a-game-using-computer-vision-18409a39a1f3)
 
 ## Run :runner:
 
