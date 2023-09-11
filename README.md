@@ -1,3 +1,9 @@
+# COVID Race Game
+
+[![Race Game Build](https://github.com/developers-cosmos/COVID-Race-Game/actions/workflows/build.yaml/badge.svg)](https://github.com/developers-cosmos/COVID-Race-Game/actions/workflows/build.yaml)
+
+[![Gesture App Build](https://github.com/developers-cosmos/COVID-Race-Game/actions/workflows/build_deepgaze.yaml/badge.svg)](https://github.com/developers-cosmos/COVID-Race-Game/actions/workflows/build_deepgaze.yaml)
+
 <img src="images/intro.JPG" height = "200px" width ="600px"/>
 
 **NOTE :** Links are not working, sorry for the trouble.

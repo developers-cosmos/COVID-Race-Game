@@ -25,10 +25,10 @@ jobs:
         pip install pyinstaller
         cd gesture_app/deepgaze
         python setup.py install
-        cd ../
 
     - name: Build
       run: |
+        cd gesture_app
         pyinstaller --onefile main.py
 
     - name: Upload Artifact
