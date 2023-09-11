@@ -1,0 +1,40 @@
+name: Python Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11.5
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+
+    - name: Build
+      run: |
+        pyinstaller --onefile race_game.py
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: race_game
+        path: dist/race_game
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: race_game
