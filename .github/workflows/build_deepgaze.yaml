@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: gesture_app
-        path: dist/main
+        path: gesture_app/dist/main
 
     - name: Download Artifact
       uses: actions/download-artifact@v2
