@@ -21,16 +21,16 @@ class FasaSaliencyMapping:
     """Implementation of the FASA (Fast, Accurate, and Size-Aware Salient Object Detection) algorithm.
 
     Abstract:
-    Fast and accurate salient-object detectors are important for various image processing and computer vision 
-    applications, such as adaptive compression and object segmentation. It is also desirable to have a detector that is 
-    aware of the position and the size of the salient objects. In this paper, we propose a salient-object detection 
-    method that is fast, accurate, and size-aware. For efficient computation, we quantize the image colors and estimate 
-    the spatial positions and sizes of the quantized colors. We then feed these values into a statistical model to 
-    obtain a probability of saliency. In order to estimate the final saliency, this probability is combined with a 
-    global color contrast measure. We test our method on two public datasets and show that our method significantly 
-    outperforms the fast state-of-the-art methods. In addition, it has comparable performance and is an order of 
-    magnitude faster than the accurate state-of-the-art methods. We exhibit the potential of our algorithm by 
-    processing a high-definition video in real time. 
+    Fast and accurate salient-object detectors are important for various image processing and computer vision
+    applications, such as adaptive compression and object segmentation. It is also desirable to have a detector that is
+    aware of the position and the size of the salient objects. In this paper, we propose a salient-object detection
+    method that is fast, accurate, and size-aware. For efficient computation, we quantize the image colors and estimate
+    the spatial positions and sizes of the quantized colors. We then feed these values into a statistical model to
+    obtain a probability of saliency. In order to estimate the final saliency, this probability is combined with a
+    global color contrast measure. We test our method on two public datasets and show that our method significantly
+    outperforms the fast state-of-the-art methods. In addition, it has comparable performance and is an order of
+    magnitude faster than the accurate state-of-the-art methods. We exhibit the potential of our algorithm by
+    processing a high-definition video in real time.
     """
 
     def __init__(self, image_h, image_w):
@@ -127,18 +127,18 @@ class FasaSaliencyMapping:
         """ Semi-Vectorized version of the precompute parameters function.
         This function runs at 0.003 seconds on a squared 400x400 pixel image.
         It returns the number of colors and estimates the color_distance matrix
-        
-        @param sigmac: the scalar used in the exponential (default=16) 
+
+        @param sigmac: the scalar used in the exponential (default=16)
         @return: the number of unique colors
         """
         L_centroid, A_centroid, B_centroid = np.meshgrid(self.L_range, self.A_range, self.B_range)
         self.unique_pixels = np.zeros((self.number_of_colors, 3))
-        
+
         if sys.version_info[0] == 2:
             color_range = xrange(0, self.number_of_colors)
         else:
             color_range = range(0, self.number_of_colors)
-        
+
         for i in color_range:
             i_index = self.index_matrix[i, :]
             L_i = L_centroid[i_index[0], i_index[1], i_index[2]]
@@ -153,7 +153,7 @@ class FasaSaliencyMapping:
 
     def _bilateral_filtering(self):
         """ Applying the bilateral filtering to the matrices.
-        
+
         This function runs at 0.0006 seconds on a squared 400x400 pixel image.
         Since the trick 'matrix[ matrix > x]' is used it would be possible to set a threshold
         which is an energy value, considering only the histograms which have enough colours.
@@ -177,7 +177,7 @@ class FasaSaliencyMapping:
 
     def _calculate_probability(self):
         """ Vectorized version of the probability estimation.
-        
+
         This function runs at 0.0001 seconds on a squared 400x400 pixel image.
         @return: a vector shape_probability of shape (number_of_colors)
         """
@@ -194,9 +194,9 @@ class FasaSaliencyMapping:
 
     def _compute_saliency_map(self):
         """ Fast vectorized version of the saliency map estimation.
-        
+
         This function runs at 7.7e-05 seconds on a squared 400x400 pixel image.
-        @return: the saliency vector 
+        @return: the saliency vector
         """
         # Vectorized operations for saliency vector estimation
         self.saliency = np.multiply(self.contrast, self.shape_probability)
@@ -212,7 +212,7 @@ class FasaSaliencyMapping:
 
     def returnMask(self, image, tot_bins=8, format='BGR2LAB'):
         """ Return the saliency mask of the input image.
-        
+
         @param: image the image to process
         @param: tot_bins the number of bins used in the histogram
         @param: format conversion, it can be one of the following:
@@ -269,4 +269,3 @@ class FasaSaliencyMapping:
         # ret, self.salient_image = cv2.threshold(self.salient_image, 150, 255, cv2.THRESH_BINARY)
         if DEBUG: print("--- %s returnMask 'iteration part' seconds ---" % (end - start))
         return self.salient_image
-

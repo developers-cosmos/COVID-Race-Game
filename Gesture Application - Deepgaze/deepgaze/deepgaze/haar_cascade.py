@@ -21,8 +21,8 @@ class haarCascade:
         self.is_face_present = False
 
         #Represent the face type found
-        # 1=Frontal,  
-        # 2=FrontRotLeft, 3=FronRotRight,  
+        # 1=Frontal,
+        # 2=FrontRotLeft, 3=FronRotRight,
         # 4=ProfileLeft, 5=ProfileRight.
         self.face_type = 0
 
@@ -32,7 +32,7 @@ class haarCascade:
         self.face_w = 0
 
         if(os.path.isfile(frontalFacePath) == False and os.path.isfile(profileFacePath)==False):
-            raise ValueError('haarCascade: the files specified do not exist.') 
+            raise ValueError('haarCascade: the files specified do not exist.')
 
         self._frontalFacePath = frontalFacePath
         self._profileFacePath = profileFacePath
@@ -44,7 +44,7 @@ class haarCascade:
     ##
     # Find a face (frontal or profile) in the input image.
     # To find the right profile the input image is vertically flipped,
-    # this is done because the training file for profile faces was 
+    # this is done because the training file for profile faces was
     # trained only on left profile.
     # @param inputImg the image where the cascade will be called
     # @param runFrontal if True it looks for frontal faces
@@ -64,19 +64,19 @@ class haarCascade:
     #
     # Return code: 1=Frontal, 2=FrontRotLeft, 3=FronRotRight,
     #              4=ProfileLeft, 5=ProfileRight.
-    def findFace(self, inputImg, 
-                 runFrontal=True, runFrontalRotated=True, 
-                 runLeft=True, runRight=True, 
-                 frontalScaleFactor=1.1, rotatedFrontalScaleFactor=1.1, 
+    def findFace(self, inputImg,
+                 runFrontal=True, runFrontalRotated=True,
+                 runLeft=True, runRight=True,
+                 frontalScaleFactor=1.1, rotatedFrontalScaleFactor=1.1,
                  leftScaleFactor=1.1, rightScaleFactor=1.1,
                  minSizeX=30, minSizeY=30, rotationAngleCCW=30, rotationAngleCW=-30, lastFaceType=0):
 
         #To speed up the chain we start it
         # from the last face-type found
         order = list()
-        if(lastFaceType == 0 or lastFaceType==1): order = (1, 2, 3, 4, 5) 
+        if(lastFaceType == 0 or lastFaceType==1): order = (1, 2, 3, 4, 5)
         if(lastFaceType == 2): order = (2, 1, 3, 4, 5)
-        if(lastFaceType == 3): order = (3, 1, 2, 4, 5)      
+        if(lastFaceType == 3): order = (3, 1, 2, 4, 5)
         if(lastFaceType == 4): order = (4, 1, 2, 3, 5)
         if(lastFaceType == 5): order = (5, 1, 2, 3, 4)
 
@@ -109,7 +109,7 @@ class haarCascade:
                 if(self.is_face_present == True):
                     self.face_type = 3
                     return (self.face_x, self.face_y, self.face_w, self.face_h)
-    
+
             #Cascade: left profiles
             if(runLeft==True and position==4):
                 self._findProfileFace(inputImg, leftScaleFactor, minSizeX, minSizeY)
@@ -119,7 +119,7 @@ class haarCascade:
 
             #Cascade: right profiles
             if(runRight==True and position==5):
-                flipped_inputImg = cv2.flip(inputImg,1) 
+                flipped_inputImg = cv2.flip(inputImg,1)
                 self._findProfileFace(flipped_inputImg, rightScaleFactor, minSizeX, minSizeY)
                 if(self.is_face_present == True):
                     self.face_type = 5
@@ -129,8 +129,8 @@ class haarCascade:
 
 
         #It returns zeros if nothing is found
-        self.face_type = 0    
-        self.is_face_present = False 
+        self.face_type = 0
+        self.is_face_present = False
         return (0, 0, 0, 0)
 
 
@@ -157,7 +157,7 @@ class haarCascade:
             self.is_face_present = False
             return (0, 0, 0, 0)
 
-        if(len(faces) == 1): 
+        if(len(faces) == 1):
             self.face_x = faces[0][0]
             self.face_y = faces[0][1]
             self.face_w = faces[0][2]
@@ -169,7 +169,7 @@ class haarCascade:
         # it returns the position of
         # the one with the bigger area.
         if(len(faces) > 1):
-             area_list = list()      
+             area_list = list()
              for x,y,h,w in faces:
                  area_list.append(w*h)
              max_index = area_list.index(max(area_list)) #return the index of max element
@@ -178,12 +178,12 @@ class haarCascade:
              self.face_w = faces[max_index][2]
              self.face_h = faces[max_index][3]
              self.is_face_present = True
-             return (faces[max_index][0], faces[max_index][1], faces[max_index][2], faces[max_index][3])            
+             return (faces[max_index][0], faces[max_index][1], faces[max_index][2], faces[max_index][3])
 
     ##
     # Find a profile face in the input image
     # @param inputImg the image where the cascade will be called
-    #           
+    #
     def _findProfileFace(self, inputImg, scaleFactor=1.1, minSizeX=30, minSizeY=30, minNeighbors=4):
 
         #Cascade: left profile
@@ -203,7 +203,7 @@ class haarCascade:
             self.is_face_present = False
             return (0, 0, 0, 0)
 
-        if(len(faces) == 1): 
+        if(len(faces) == 1):
             self.face_x = faces[0][0]
             self.face_y = faces[0][1]
             self.face_w = faces[0][2]
@@ -215,7 +215,7 @@ class haarCascade:
         # it returns the position of
         # the one with the bigger area.
         if(len(faces) > 1):
-             area_list = list()      
+             area_list = list()
              for x,y,h,w in faces:
                  area_list.append(w*h)
              max_index = area_list.index(max(area_list)) #return the index of max element
@@ -224,9 +224,4 @@ class haarCascade:
              self.face_w = faces[max_index][2]
              self.face_h = faces[max_index][3]
              self.is_face_present = True
-             return (faces[max_index][0], faces[max_index][1], faces[max_index][2], faces[max_index][3]) 
-
-
-
-
-
+             return (faces[max_index][0], faces[max_index][1], faces[max_index][2], faces[max_index][3])

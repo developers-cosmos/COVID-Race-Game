@@ -41,7 +41,7 @@ my_mask_analyser = BinaryMaskAnalyser()
 
 #Defining the deepgaze color detector object
 my_back_detector = MultiBackProjectionColorDetector()
-my_back_detector.setTemplateList(template_list) #Set the template 
+my_back_detector.setTemplateList(template_list) #Set the template
 
 print("Welcome! Press 'a' to start the hand tracking. Press 'q' to exit...")
 
@@ -63,7 +63,7 @@ while(True):
         if(x_center > int(cam_w/2)+offset and area>5000):
             #ui.write(e.EV_KEY, e.KEY_DOWN, 1)
             keyboard.press(Key.left)
-            print("KEY_LEFT")     
+            print("KEY_LEFT")
         #UP
         elif(x_center < int(cam_w/2)-offset and area>5000 ):
             #ui.write(e.EV_KEY, e.KEY_UP, 1)
@@ -75,24 +75,24 @@ while(True):
             keyboard.release(Key.left)
             keyboard.release(Key.right)
             #ui.write(e.EV_KEY, e.KEY_DOWN, 0) #release the buttons
-            #ui.write(e.EV_KEY, e.KEY_UP, 0)          
+            #ui.write(e.EV_KEY, e.KEY_UP, 0)
         #ui.syn()
 
     cv2.line(frame, (int(cam_w/2)-offset, 0), (int(cam_w/2)-offset, cam_h), [0,0,255], 2) #horizontal
     cv2.line(frame, (int(cam_w/2)+offset, 0), (int(cam_w/2)+offset, cam_h), [0,0,255], 2)
-    
+
     #Showing the frame and waiting for the exit command
     frame = cv2.flip(frame, 1)
     frame_mask = cv2.flip(frame_mask, 1)
     cv2.imshow('mpatacchiola - deepgaze', frame) #show on window
     cv2.imshow('Mask', frame_mask) #show on window
     if cv2.waitKey(1) & 0xFF == ord('q'): break #Exit when Q is pressed
-    if cv2.waitKey(33) == ord('a'): 
-        if(ENABLE_CAPTURE==True): 
+    if cv2.waitKey(33) == ord('a'):
+        if(ENABLE_CAPTURE==True):
             print("Disabling capture...")
             ENABLE_CAPTURE=False
         else:
-            print("Enabling capture...") 
+            print("Enabling capture...")
             ENABLE_CAPTURE=True
 
 #Close the keyboard ojbect

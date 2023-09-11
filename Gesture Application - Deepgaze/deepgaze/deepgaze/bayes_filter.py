@@ -6,9 +6,9 @@
 #
 # Discrete Bayes filter (DBF) implementation. It permits estimating
 # the value of a quantity X given the observation Z.
-# If we have some noisy measurement Z of a discrete quantity X, we  
-# can use the DBF  in a recursive estimationto find the most 
-# probable value of X (belief). 
+# If we have some noisy measurement Z of a discrete quantity X, we
+# can use the DBF  in a recursive estimationto find the most
+# probable value of X (belief).
 
 
 import numpy as np
@@ -20,7 +20,7 @@ class DiscreteBayesFilter:
     def __init__(self, states_number):
         if(states_number<=0):
             raise ValueError('BayesFilter: the number of states must be greater than zero.')
-        else: 
+        else:
             self._states_number = states_number
             #Declaring the prior distribution
             self._prior = np.zeros(states_number, dtype=np.float32)
@@ -43,7 +43,7 @@ class DiscreteBayesFilter:
             raise ValueError('DiscreteBayesFilter: the shape of the prior is different from the total number of states.')
         elif(cpt.shape[0]!=self._states_number or cpt.shape[1]!=self._states_number):
             raise ValueError('DiscreteBayesFilter: the shape of the cpt is different from the total number of states.')
-        else: 
+        else:
             self._prior = prior.copy()
             self._cpt = cpt.copy()
 
@@ -74,5 +74,3 @@ class DiscreteBayesFilter:
         normalisation = np.sum(belief_updated)
         belief_updated /= normalisation
         return belief_updated
-
-    

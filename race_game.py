@@ -1,7 +1,7 @@
 
 
 ########################################################################
-###################         author = "Ritheesh Baradwaj"         #######  
+###################         author = "Ritheesh Baradwaj"         #######
 ###################         project name = "COVID Race"          #######
 ###################         credits = "Ritheesh Baradwaj"        #######
 ###################         license = "Apache License 2.0"       #######
@@ -84,7 +84,7 @@ def player(x,y):
 # display any text objects
 def text_objects(text, font,color = black):
     textSurface = font.render(text, True, color)
-    return textSurface, textSurface.get_rect() 
+    return textSurface, textSurface.get_rect()
 
 
 # def message_display(text):
@@ -119,7 +119,7 @@ def crash():
     TextSurf, TextRect = text_objects("YOU ARE DEAD!!", largeText,black)
     TextRect.center = ((display_width/2),(display_height/2))
     gameDisplay.blit(TextSurf, TextRect)
-    
+
 
     while True:
         for event in pygame.event.get():
@@ -127,14 +127,14 @@ def crash():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-                
+
         #gameDisplay.fill(white)
-        
+
 
         button("Play Again",150,450,100,50,green,bright_green,game_loop)
         button("Quit",550,450,100,50,red,bright_red,quitgame)
 
-        
+
 
         pygame.display.update()
         clock.tick(15)
@@ -148,7 +148,7 @@ def button(msg,x,y,w,h,ic,ac,action=None):
         pygame.draw.rect(gameDisplay, ac,(x,y,w,h))
 
         if click[0] == 1 and action != None:
-            action()         
+            action()
     else:
         pygame.draw.rect(gameDisplay, ic,(x,y,w,h))
 
@@ -183,7 +183,7 @@ def paused():
     TextSurf, TextRect = text_objects("Paused", largeText)
     TextRect.center = ((display_width/2),(display_height/2))
     gameDisplay.blit(TextSurf, TextRect)
-    
+
     while pause:
         for event in pygame.event.get():
             #print(event)
@@ -192,10 +192,10 @@ def paused():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     unpause()
-            
-                
+
+
         #gameDisplay.fill(white)
-        
+
 
         button("Continue",150,450,100,50,green,bright_green,unpause)
         button("Quit",550,450,100,50,red,bright_red,quitgame)
@@ -215,7 +215,7 @@ def police_fire():
 
 # game intro section
 def game_intro():
-    
+
     intro = True
 
     while intro:
@@ -223,7 +223,7 @@ def game_intro():
             #print(event)
             if event.type == pygame.QUIT:
                 quitgame()
-                
+
         gameDisplay.fill(black)
         gameDisplay.blit(DC,(100,90))
         largeText = pygame.font.SysFont("Cooper Black",95)
@@ -303,7 +303,7 @@ def game_loop():
     health_status = False
 
     police_status = False
-    
+
 
 
     # entire game loop
@@ -321,8 +321,8 @@ def game_loop():
                 if event.key == pygame.K_SPACE:
                     pause = True
                     paused()
-            
-                
+
+
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -330,15 +330,15 @@ def game_loop():
 
         x += x_change
 
-        
-        
+
+
         if bgY < BACKGROUND.get_width() * -1:  # If our bg is at the -width then reset its position
             bgY = 0
-    
+
         gameDisplay.blit(BACKGROUND,(0,bgY))
 
         bgY -= 2 # Move both background images back
-        
+
         # things(thingx, thingy, thingw, thingh, color)
         things(thing_startx, thing_starty, thing_width, thing_height, block_color)
 
@@ -371,11 +371,11 @@ def game_loop():
         player(x,y)
 
         things_dodged(dodged)
-        
+
         # when user touches the corner
         if x > display_width - player_width or x < 0:
             crash()
-        
+
         # when virus goes out of the screen
         if thing_starty > display_height:
             thing_starty = 0 - thing_height
@@ -397,10 +397,10 @@ def game_loop():
             police_starty = -600
             police_startx = random.randrange(0,display_width)
 
-        # when PLAYER touch virus 
+        # when PLAYER touch virus
         if y < thing_starty + thing_height: # player crossed virus w.r.t to Y-axis
             #print('y crossover')
-            
+
             # player crossed virus w.r.t X-axis
             if x > thing_startx and x < thing_startx + thing_width and player_safe == False  or x + player_width > thing_startx and x + player_width < thing_startx + thing_width and player_safe == False:
                 #print('x crossover')
@@ -438,11 +438,11 @@ def game_loop():
                 pygame.mixer.music.load('gallery/audio/jazz.wav')
                 pygame.mixer.music.play(-1)
                 ############
-                
+
                 player_safe = True
                 health_checkpoint = dodged
                 health_status = False
-        
+
         # when user is in safe mode for next 4 virus objects
         if dodged - health_checkpoint > 4:
             player_safe = False
@@ -456,8 +456,8 @@ def game_loop():
             time.sleep(0.01)
             gameDisplay.blit(PLAYER,(x,y))
             pygame.display.flip()
-            
-            
+
+
         # update the screen
         pygame.display.update()
         clock.tick(FPS)
@@ -466,6 +466,3 @@ def game_loop():
 game_intro()
 game_loop()
 quitgame()
-
-    
-

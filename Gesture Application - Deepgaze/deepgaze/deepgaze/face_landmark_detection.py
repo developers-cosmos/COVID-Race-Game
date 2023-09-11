@@ -57,15 +57,8 @@ class faceLandmarkDetection:
 
 
             #Estimation of the eye dimesnion
-            #self._right_eye_w = self._landmark_matrix[RIGHT_TEAR].item((0,0)) - self._landmark_matrix[RIGHT_EYE].item((0,0)) 
+            #self._right_eye_w = self._landmark_matrix[RIGHT_TEAR].item((0,0)) - self._landmark_matrix[RIGHT_EYE].item((0,0))
             #self._left_eye_w = self._landmark_matrix[LEFT_EYE].item((0,0)) - self._landmark_matrix[LEFT_TEAR].item((0,0))
 
 
             return self._landmarks
-
-
-
-
-
-
-

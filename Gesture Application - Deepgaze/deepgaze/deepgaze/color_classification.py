@@ -3,9 +3,9 @@
 #The MIT License (MIT)
 #Copyright (c) 2016 Massimiliano Patacchiola
 #
-#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-#MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
-#CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+#MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+#CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 #SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import numpy as np
@@ -16,16 +16,16 @@ class HistogramColorClassifier:
     """Classifier for comparing an image I with a model M. The comparison is based on color
     histograms. It included an implementation of the Histogram Intersection algorithm.
 
-    The histogram intersection was proposed by Michael Swain and Dana Ballard 
+    The histogram intersection was proposed by Michael Swain and Dana Ballard
     in their paper "Indexing via color histograms".
-    Abstract: The color spectrum of multicolored objects provides a a robust, 
-    efficient cue for indexing into a large database of models. This paper shows 
-    color histograms to be stable object representations over change in view, and 
-    demonstrates they can differentiate among a large number of objects. It introduces 
-    a technique called Histogram Intersection for matching model and image histograms 
-    and a fast incremental version of Histogram Intersection that allows real-time 
-    indexing into a large database of stored models using standard vision hardware. 
-    Color can also be used to search for the location of an object. An algorithm 
+    Abstract: The color spectrum of multicolored objects provides a a robust,
+    efficient cue for indexing into a large database of models. This paper shows
+    color histograms to be stable object representations over change in view, and
+    demonstrates they can differentiate among a large number of objects. It introduces
+    a technique called Histogram Intersection for matching model and image histograms
+    and a fast incremental version of Histogram Intersection that allows real-time
+    indexing into a large database of stored models using standard vision hardware.
+    Color can also be used to search for the location of an object. An algorithm
     called Histogram Backprojection performs this task efficiently in crowded scenes.
     """
 
@@ -36,18 +36,18 @@ class HistogramColorClassifier:
         it is possible to append new models. Using the default values
         it extracts a 3D BGR color histogram from the image, using
 	10 bins per channel.
-        @param channels list where we specify the index of the channel 
-           we want to compute a histogram for. For a grayscale image, 
-           the list would be [0]. For all three (red, green, blue) channels, 
+        @param channels list where we specify the index of the channel
+           we want to compute a histogram for. For a grayscale image,
+           the list would be [0]. For all three (red, green, blue) channels,
            the channels list would be [0, 1, 2].
-        @param hist_size number of bins we want to use when computing a histogram. 
-            It is a list (one value for each channel). Note: the bin sizes can 
+        @param hist_size number of bins we want to use when computing a histogram.
+            It is a list (one value for each channel). Note: the bin sizes can
             be different for each channel.
         @param hist_range it is the min-max value of the values stored in the histogram.
             For three channels can be [0, 256, 0, 256, 0, 256], if there is only one
             channel can be [0, 256]
-        @param hsv_type Convert the input BGR frame in HSV or GRAYSCALE. before taking 
-            the histogram. The HSV representation can get more reliable results in 
+        @param hsv_type Convert the input BGR frame in HSV or GRAYSCALE. before taking
+            the histogram. The HSV representation can get more reliable results in
             situations where light have a strong influence.
             BGR: (default) do not convert the input frame
             HSV: convert in HSV represantation
@@ -153,7 +153,7 @@ class HistogramColorClassifier:
         return comparison_array
 
     def returnHistogramComparisonProbability(self, image, method='intersection'):
-        """Return the probability distribution of the comparison between 
+        """Return the probability distribution of the comparison between
         all the model and the input image. The sum of the elements in the output
         array sum up to 1.
 
@@ -204,4 +204,3 @@ class HistogramColorClassifier:
         @return: an integer representing the number of elements stored
         """
         return len(self.model_list)
-

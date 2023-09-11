@@ -17,7 +17,7 @@ Requires python-3 and pip installed.
 
 ```python
 pip install -r requirements.txt
-python "Race Game.py"
+python race_game.py
 ```
 ## Downloads
 
