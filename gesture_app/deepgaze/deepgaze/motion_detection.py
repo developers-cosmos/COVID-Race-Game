@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 
-#The MIT License (MIT)
-#Copyright (c) 2016 Massimiliano Patacchiola
+# The MIT License (MIT)
+# Copyright (c) 2016 Massimiliano Patacchiola
 #
-#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-#MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-#CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-#SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+# CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+# SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import numpy as np
+
 import cv2
-import sys
+
 
 class DiffMotionDetector:
     """Motion is detected through the difference between
@@ -23,9 +23,7 @@ class DiffMotionDetector:
     """
 
     def __init__(self):
-        """Init the color detector object.
-
-    """
+        """Init the color detector object."""
         self.background_gray = None
 
     def setBackground(self, frame):
@@ -36,7 +34,8 @@ class DiffMotionDetector:
         is internally stored as an HSV image.
         @param frame the template to use in the algorithm
         """
-        if(frame is None): return None
+        if frame is None:
+            return None
         self.background_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     def getBackground(self):
@@ -45,7 +44,7 @@ class DiffMotionDetector:
         The template can be a spedific region of interest of the main
         frame or a representative color scheme to identify.
         """
-        if(self.background_gray is None):
+        if self.background_gray is None:
             return None
         else:
             return cv2.cvtColor(self.background_gray, cv2.COLOR_GRAY2BGR)
@@ -56,11 +55,13 @@ class DiffMotionDetector:
         @param foreground_image the frame to check
         @param threshold the value used for filtering the pixels after the absdiff
         """
-        if(foreground_image is None):
+        if foreground_image is None:
             return None
         foreground_gray = cv2.cvtColor(foreground_image, cv2.COLOR_BGR2GRAY)
         delta_image = cv2.absdiff(self.background_gray, foreground_gray)
-        threshold_image = cv2.threshold(delta_image, threshold, 255, cv2.THRESH_BINARY)[1]
+        threshold_image = cv2.threshold(delta_image, threshold, 255, cv2.THRESH_BINARY)[
+            1
+        ]
         return threshold_image
 
 
@@ -108,8 +109,9 @@ class MogMotionDetector:
             In other words, it is the minimum prior probability that the background is in the scene.
         @param noise specifies the noise strenght
         """
-        self.BackgroundSubtractorMOG = cv2.BackgroundSubtractorMOG(history, numberMixtures, backgroundRatio, noise)
-
+        self.BackgroundSubtractorMOG = cv2.BackgroundSubtractorMOG(
+            history, numberMixtures, backgroundRatio, noise
+        )
 
     def returnMask(self, foreground_image):
         """Return the binary image after the detection process
@@ -118,6 +120,7 @@ class MogMotionDetector:
         @param threshold the value used for filtering the pixels after the absdiff
         """
         return self.BackgroundSubtractorMOG.apply(foreground_image)
+
 
 class Mog2MotionDetector:
     """Motion is detected through the Imporved Mixtures of Gaussian (MOG)
@@ -134,21 +137,18 @@ class Mog2MotionDetector:
     """
 
     def __init__(self):
-        """Init the color detector object.
-
-        """
+        """Init the color detector object."""
         self.BackgroundSubtractorMOG2 = cv2.BackgroundSubtractorMOG2()
-
 
     def returnMask(self, foreground_image):
         """Return the binary image after the detection process
 
         @param foreground_image the frame to check
         """
-        #Since the MOG2 returns shadows with value 127 we have to
-        #filter these values in order to have a binary mask
+        # Since the MOG2 returns shadows with value 127 we have to
+        # filter these values in order to have a binary mask
         img = self.BackgroundSubtractorMOG2.apply(foreground_image)
-        ret, thresh = cv2.threshold(img, 126, 255,cv2.THRESH_BINARY)
+        ret, thresh = cv2.threshold(img, 126, 255, cv2.THRESH_BINARY)
         return thresh
 
     def returnGreyscaleMask(self, foreground_image):
