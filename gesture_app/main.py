@@ -1,6 +1,6 @@
 import cv2
-from deepgaze.color_detection import MultiBackProjectionColorDetector
-from deepgaze.mask_analysis import BinaryMaskAnalyser
+from deepgaze.deepgaze.color_detection import MultiBackProjectionColorDetector
+from deepgaze.deepgaze.mask_analysis import BinaryMaskAnalyser
 from pynput.keyboard import Controller, Key
 
 # Declare the simulated keyboard object
