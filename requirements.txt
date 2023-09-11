@@ -1,6 +1,6 @@
-dlib
-numpy
-opencv_python
-pygame
-pynput
-tensorflow
+dlib==19.24.2
+numpy==1.24.3
+opencv_python==4.8.0.76
+pygame==2.5.1
+pynput==1.7.6
+tensorflow==2.13.0

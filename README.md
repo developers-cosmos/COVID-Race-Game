@@ -6,7 +6,7 @@ A 2d **Covid Race Game** is created using python and pygame library. Also user c
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://github.com/developers-cosmos/COVID-Race-Game/graphs/commit-activity) ![GitHub language count](http://img.shields.io/github/languages/count/developers-cosmos/COVID-Race-Game) ![GitHub repo size](https://img.shields.io/github/repo-size/developers-cosmos/COVID-Race-Game)
 
-<img src="6gif.gif"/>
+<img src="assets/demo.gif"/>
 
 For implementation visit my article on [medium](https://medium.com/towards-artificial-intelligence/how-i-developed-a-game-using-computer-vision-18409a39a1f3)
 
